@@ -82,11 +82,16 @@ def _make_summary(model, sample_input, convert_fc=False, batch_size=1):
     # remove these hooks
     for h in hooks:
         h.remove()
+    print(summary)
 
     return summary
 
 
 def _extract_layer_data(model, sample_inputs, convert_fc=False, exception_module_names=[], batch_size=1):
+    """
+    Returns summary - list of layer objects
+
+    """
     conv_list = []
     for name, layer in model.named_modules():
         for exception in exception_module_names:
@@ -102,12 +107,27 @@ def _convert_from_layer_data(layer_data, model_name, save_dir):
     if not os.path.exists(outdir):
         os.makedirs(outdir)
 
+
+    depth = []
+
     # make the problem file for each layer
     for i in range(0, len(layer_data)):
         problem = layer_data[i]
-        file_name = model_name + '_' + 'layer' + str(i+1) + '.yaml'
+        print("problem", problem)
+        if problem.name == "depth_wise_conv_layer":
+            problem.name = "conv_layer"
+            file_name = model_name + '_depthwise_' + 'layer' + str(i+1) + '.yaml'
+            depth.append(i+1)
+            
+        else:
+            file_name = model_name + '_' + 'layer' + str(i+1) + '.yaml'
+
         file_path = os.path.abspath(os.path.join(save_dir, model_name, file_name))
         with open(file_path, 'w') as f:
             f.write(yaml.dump(problem.to_yaml()))
+    word = " ". join([str(i) for i in depth])
+    
+    print("depth layers", word)
+
 
     print("conversion complete!\n")
