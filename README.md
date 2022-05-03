@@ -1,3 +1,10 @@
+# Contributions
+
+This is part of our final project for 6.825 Hardware Archtiecture for Deep Learning. This repo contains modified code that allows to run returned .yaml files more easily for depthwise convolutional layers.
+
+
+
+
 # pytorch2timeloop-converter
 
 Converting pytorch convolutional neural nets and certain transformers to Timeloop workload files.

@@ -52,7 +52,7 @@ def _conv_hook(summary, batch_size):
                 w_pad=module.padding[0],
                 h_pad=module.padding[1],
                 n=batch_size,
-                name="conv_layer"
+                name="depth_wise_conv_layer"
             )
         else:
             description = ConvLayerDescription(
