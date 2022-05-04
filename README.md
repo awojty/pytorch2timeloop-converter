@@ -1,6 +1,6 @@
 # Contributions
 
-This is part of our final project for 6.825 Hardware Archtiecture for Deep Learning. This repo contains modified code that allows to run returned .yaml files more easily for depthwise convolutional layers.
+This is part of our final project for 6.825 Hardware Archtiecture for Deep Learning. This repo contains modified code that allows to run returned .yaml files more easily for depthwise convolutional layers. It also provides support for AlBERT transformer
 
 
 
